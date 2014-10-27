@@ -19,6 +19,8 @@ router.post('/play', function(req, res) {
 });
 
 router.get('/stop', function(req, res) {
+
+    player.kill('SIGHUP');
     res.render('stop', { title: 'Stopping' });
 });
 

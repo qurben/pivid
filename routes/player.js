@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var omx = require('omxcontrol');
+var omx = require('../controller/omxcontrol');
 
 /* GET home page. */
 router.get('/', function(req, res) {

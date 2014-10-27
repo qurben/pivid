@@ -1,29 +1,29 @@
 var express = require('express');
 var router = express.Router();
 
-var player = require('../controller/player')
+var omx = require('omxcontrol');
 
 /* GET home page. */
 router.get('/', function(req, res) {
     res.render('index', { title: 'Express' });
 });
 
-router.post('/play', function(req, res) {
+router.post('/:name/play', function(req, res) {
     var loc = req.body.loc;
 
-    player.play(loc);
+    omx.start(loc);
 
     res.send('playing! ' + loc);
 });
 
-router.get('/stop', function(req, res) {
-    player.stop();
-    res.render('stop', { title: 'Stopping' });
+router.post('/:name/stop', function(req, res) {
+    omx.stop();
+    res.send(200);
 });
 
-router.get('/pause', function(req, res) {
-    player.pause();
-    res.render('pause');
+router.post('/:name/pause', function(req, res) {
+    omx.pause();
+    res.send(200);
 });
 
 module.exports = router;

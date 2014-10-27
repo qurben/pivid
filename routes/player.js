@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+var spawn = require('child_process').spawn;
+
+var player;
+
 /* GET home page. */
 router.get('/', function(req, res) {
     res.render('index', { title: 'Express' });
@@ -8,6 +12,8 @@ router.get('/', function(req, res) {
 
 router.post('/play', function(req, res) {
     var loc = req.body.loc;
+
+    player = spawn('omxplayer', [loc]);
 
     res.send('playing! ' + loc);
 });

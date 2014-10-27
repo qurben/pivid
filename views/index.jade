@@ -3,6 +3,6 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  form(action='/player/play', method='post')
+  form(action='/player/file/play', method='post')
       input(type='text', name='loc')
       input(type='submit')

@@ -8,16 +8,15 @@ router.get('/', function(req, res) {
     res.render('index', { title: 'Express' });
 });
 
-router.post('/play', function(req, res) {
+router.post('/start', function(req, res) {
     var loc = req.body.loc;
 
     omx.start(loc);
-
-    res.send('playing! ' + loc);
+    res.send(200);
 });
 
 router.post('/stop', function(req, res) {
-    omx.stop();
+    omx.quit();
     res.send(200);
 });
 

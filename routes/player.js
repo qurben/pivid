@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var spawn = require('child_process').spawn;
-
-var player;
+var player = require('../controller/player')
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -13,19 +11,18 @@ router.get('/', function(req, res) {
 router.post('/play', function(req, res) {
     var loc = req.body.loc;
 
-    player = spawn('omxplayer', [loc]);
+    player.play(loc);
 
     res.send('playing! ' + loc);
 });
 
 router.get('/stop', function(req, res) {
-
-    player.kill('SIGHUP');
+    player.stop();
     res.render('stop', { title: 'Stopping' });
 });
 
 router.get('/pause', function(req, res) {
-    player.stdin.write('p');
+    player.pause();
     res.render('pause');
 });
 

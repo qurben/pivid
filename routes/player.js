@@ -25,6 +25,7 @@ router.get('/stop', function(req, res) {
 });
 
 router.get('/pause', function(req, res) {
+    player.stdin.write('p');
     res.render('pause');
 });
 
